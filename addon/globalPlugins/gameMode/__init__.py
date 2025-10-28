@@ -74,11 +74,31 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	
 	def decideCancelSpeech(self, gesture):
 		self.gesture = gesture
-		if self.switch and gesture.vkCode not in (VK_CONTROL, VK_LCONTROL, VK_RCONTROL):
+		if not self.switch:
+			return True
+		scriptName = self._getGestureScriptName(gesture)
+		if scriptName:
+			# Scripted gestures (e.g. NVDA commands such as say all) should not trigger
+			# Game Mode's deferred cancel logic, otherwise core features like say all can
+			# break when we clear NVDA's speech queue just as the script starts speaking.
+			self.keyboardIsPressed = False
+			return True
+		if gesture.vkCode not in (VK_CONTROL, VK_LCONTROL, VK_RCONTROL):
 			self.keyboardIsPressed = True
-			gesture.speechEffectWhenExecuted = None
-		
+			if hasattr(gesture, 'speechEffectWhenExecuted'):
+				gesture.speechEffectWhenExecuted = None
 		return True
+
+	def _getGestureScriptName(self, gesture):
+		for attr in ('script', 'mainThreadScriptCall'):
+			script = getattr(gesture, attr, None)
+			if not script:
+				continue
+			func = getattr(script, '__func__', script)
+			name = getattr(func, '__name__', None)
+			if name:
+				return name
+		return None
 	
 	def pre_speech(self, speechSequence, *args, **kwargs):
 		if self.switch and self.keyboardIsPressed:
