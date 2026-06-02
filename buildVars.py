@@ -28,7 +28,7 @@ addon_info = {
 	# version
 	"addon_version": "2026.1.1",
 	# Author(s)
-	"addon_author": "fltx2004 <admin@yydjtc.cn",
+	"addon_author": "fltx2004 <admin@yydjtc.cn>",
 	# URL for the add-on documentation support
 	"addon_url": "https://fltxdbk.yydjtc.cn/",
 	# URL for the add-on repository where the source code can be found
