@@ -24,14 +24,15 @@ addon_info = {
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Used for modes that require changing the NVDA principle when playing a game. """),
-	# Changes shown by NVDA 2026.1+ Add-on Store details.
 	"addon_changelog": _("Update plugin version to 2026.1.1."),
 	# version
 	"addon_version": "2026.1.1",
 	# Author(s)
 	"addon_author": "fltx2004 <admin@yydjtc.cn",
 	# URL for the add-on documentation support
-	"addon_url": "https://github.com/fltx2004/game_mode",
+	"addon_url": "https://fltxdbk.yydjtc.cn/",
+	# URL for the add-on repository where the source code can be found
+	addon_sourceURL="https://github.com/fltx2004/game_mode",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
@@ -42,6 +43,10 @@ addon_info = {
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!
 	"addon_updateChannel": None,
+	# Add-on license such as GPL 2
+	addon_license="GPL3",
+	# URL for the license document the ad-on is licensed under
+	addon_licenseURL="https://www.gnu.org/licenses/gpl-3.0.html",
 }
 
 # Define the python files that are the sources of your add-on.
