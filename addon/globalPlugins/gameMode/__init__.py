@@ -8,7 +8,7 @@ from . import worldVoicePatch
 from config import conf
 from logHandler import log
 from inputCore import decide_executeGesture
-from buildVersion import version
+from buildVersion import version_year, version_major
 from scriptHandler import script
 
 import ui
@@ -35,12 +35,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.keyboardIsPressed = False
 		decide_executeGesture.register(self.decideCancelSpeech)
 		
-		if version >= '2024.2':
+		if self._supportsSpeechExtensionPoints():
 			speech.speech.pre_speech.register(self.pre_speech)
 		else:
 			speech.speech.speak = self.speak
 		
 	
+	def _supportsSpeechExtensionPoints(self):
+		return (version_year, version_major) >= (2024, 2)
+	
+
 	def patchChineseFileName(self):
 		# 將 appModules 當中的亂碼檔名改為中文
 		appModulesDir = os.path.join(os.path.dirname(__file__), '..', '..', 'appModules')
@@ -56,7 +60,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def terminate(self):
 		conf['gameMode']['switch'] = self.switch
 		decide_executeGesture.unregister(self.decideCancelSpeech)
-		if version >= '2024.2':
+		if self._supportsSpeechExtensionPoints():
 			speech.speech.pre_speech.unregister(self.pre_speech)
 		else:
 			speech.speech.speak = oldSpeak

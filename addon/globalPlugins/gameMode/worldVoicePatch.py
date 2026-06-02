@@ -1,4 +1,4 @@
-from buildVersion import version
+from buildVersion import version_year, version_major
 import speech
 from core import postNvdaStartup
 from globalPluginHandler import runningPlugins
@@ -26,12 +26,16 @@ class WorldVoicePatch:
 		
 		wv.hookInstance.end()
 		
-		if version >= '2024.2':
+		if self._supportsSpeechExtensionPoints():
 			speech.speech.pre_speechCanceled.register(self.preSpeechCanceled)
 		else:
 			speech.cancelSpeech = self.cancelSpeech
 		
 	
+	def _supportsSpeechExtensionPoints(self):
+		return (version_year, version_major) >= (2024, 2)
+	
+
 	def preSpeechCanceled(self):
 		try:
 			from synthDriverHandler import getSynth
