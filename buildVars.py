@@ -32,7 +32,7 @@ addon_info = {
 	# URL for the add-on documentation support
 	"addon_url": "https://fltxdbk.yydjtc.cn/",
 	# URL for the add-on repository where the source code can be found
-	addon_sourceURL="https://github.com/fltx2004/game_mode",
+	"addon_sourceURL": "https://github.com/fltx2004/game_mode",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
@@ -44,9 +44,9 @@ addon_info = {
 	# Do not change unless you know what you are doing!
 	"addon_updateChannel": None,
 	# Add-on license such as GPL 2
-	addon_license="GPL3",
+	"addon_license": "GPL3",
 	# URL for the license document the ad-on is licensed under
-	addon_licenseURL="https://www.gnu.org/licenses/gpl-3.0.html",
+	"addon_licenseURL": "https://www.gnu.org/licenses/gpl-3.0.html",
 }
 
 # Define the python files that are the sources of your add-on.
